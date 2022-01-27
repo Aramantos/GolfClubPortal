@@ -1,0 +1,96 @@
+:root {
+    --queen-pink: #d6c3c9ff;
+    --almond: #E9D7C3ff;
+    --glaucous: #5589C3ff;
+    --olivine: #9BAD63ff;
+    --gunmetal: #022936ff;
+}
+
+body{
+    background: url(/media/dunmore.jpeg) no-repeat center center fixed;
+    background-size: cover;
+}
+
+#title{
+    font-family: cursive;
+    font-size: 2.5rem;
+    font-weight: bolder;
+    padding-top: 5px;
+    color: var(--gunmetal);
+    text-shadow: var(--olivine) 0px 0px 5px;
+    margin: 0.5rem 0;
+}
+
+.navbar {
+    background: var(--almond);
+    border-bottom: 5px solid var(--queen-pink);
+    box-shadow: 0 0 5px white;
+}
+
+.dropdown-menu {
+    background: var(--almond);
+    box-shadow: 5px 5px var(--gunmetal);
+}
+
+.dropdown-item {
+    color: var(--gunmetal);
+    text-shadow: 0px 0px 5px var(--almond);
+    font-size: 1.2rem;
+}
+
+.dropdown-item:hover {
+    color: var(--almond);
+    background: var(--gunmetal);
+    text-shadow: 0px 0px 5px var(--almond);
+}
+
+#logo-nav {
+    height: 45px;
+    width: 45px;
+    border-radius: 50%;
+    margin-bottom: 7px;
+}
+
+.navbar-collapse{
+    justify-content: flex-end;
+}
+
+.nav-link{
+    font-size: 1.3rem;
+    color: var(--gunmetal);
+}
+
+.nav-link:hover {
+    color: black;
+    text-decoration: underline;
+}
+
+.navbar-toggler {
+    background: #fbf86a;;
+}
+
+.logo{
+    padding: 0;
+}
+
+.no-bg {
+    background-color: unset;
+}
+
+@media (max-width: 1025px) {
+    #title {
+        font-size: 2rem;
+    }
+}
+
+@media (max-width: 792px) {
+    #title {
+        font-size: 1.8rem;
+    }
+}
+
+@media (max-width: 510px) {
+    #title {
+        font-size: 1.6rem;
+    }
+}
