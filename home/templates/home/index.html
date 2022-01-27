@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'home/css/home.css' %}">
+{% endblock %}
+
+{% block extra_js %}
+    
+{% endblock %}
+
+{% block content %}
+    <div id="home-container" class="container">
+        <a href="#">
+            <h1 id="date" class="text-center"></h1>
+        </a>
+        <div>
+            <ul id="home-info" class="d-flex">
+                <li>Checkins - </li>
+                <li>Notes - </li>
+            </ul>
+        </div>
+        <div>
+            <ul id="home-list" class="d-flex">
+                {% if request.user.is_authenticated %}
+                    <li>
+                        <a class="home-list-item" href="#">To-Do List</a>
+                    </li>     
+                    <li>
+                        <a class="home-list-item" href="{% url 'account_logout' %}">Logout</a>
+                    </li>     
+                    <li>
+                        <a class="home-list-item" href="mailto:cleaners@cleaners.com">E-mail Cleaners</a>
+                    </li>                
+                {% else %}
+                    <li>
+                        <a class="home-list-item" id="login-button" href="{% url 'account_login' %}">Login</a>
+                    </li>
+                {% endif %}
+            </ul>
+        </div>
+    </div>
+{% endblock %}
+
+{% block postloadjs %}
+    <script src="{% static 'home/js/home.js' %}"></script>   
+{% endblock %}
