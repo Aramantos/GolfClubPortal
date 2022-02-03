@@ -13,7 +13,7 @@
     padding: 20px;
     margin-top: 20vh;
     border: dotted 5px var(--gunmetal);
-    opacity: 80%;
+    opacity: 0;
 }
 
 #home-container a{
@@ -47,7 +47,6 @@
 .home-list-item{
     color: var(--gunmetal)!important;
     border: 2px solid aliceblue;
-    padding: 10px;
     border-radius: 10px;
     background: aliceblue;
     font-size: 1.3rem;
