@@ -6,40 +6,67 @@
 {% endblock %}
 
 {% block extra_js %}
-    
 {% endblock %}
 
 {% block content %}
-    <div class="container custom-container fade-in">
-        <a href="#">
-            <h1 id="date" class="text-center"></h1>
-        </a>
-        <div>
-            <ul id="home-info" class="d-flex">
-                <li>Todays Checkins - </li>
-                <li>Urgent Notes - </li>
-            </ul>
+    <div class="my-5"></div>
+    {% for note in notes reversed %}
+        <div class="note-card container custom-container">
+            <div class="col-12">
+                <div>
+                    <div class="row">
+                        <div class="col-6">
+                            <p id="note-title" class="text-left">{{ note.title }}</p>
+                        </div>
+                        <div class="col-6">
+                            {% if note.urgent %}
+                                <p id="urgent" class="text-right cursive look-at-me">ACTION REQUIRED</p>
+                            {% else %}
+                                <!-- Button trigger modal -->
+                                <a id="remove-note" class="cursive" type="button" data-toggle="modal" data-target="#remove-note-Modal">
+                                    This note is no longer needed
+                                </a>
+                                <!-- Modal -->
+                                <div class="modal fade" id="remove-note-Modal" tabindex="-1" role="dialog" aria-labelledby="removeModalLabel"
+                                    aria-hidden="true">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="removeModalLabel">Remove Note</h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                Are you sure you this note is no longer needed?
+                                            </div>
+                                            <div class="modal-footer">
+                                                <a id="close" class="btn btn-outline-black rounded-0" href=""><i
+                                                        class="far fa-times-circle"></i> Close</a>
+                                                <a class="remove-confirm-md remove-item float-right update-remove-btn"
+                                                    id="remove_{{ note.note }}" href="{% url 'delete_note' note.id %}">Remove</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                    <hr>
+                    <p id="description" class="text-center">{{ note.description }}</p>
+                    <hr>
+                    <div class="row">
+                        <div class="col-8">
+                            <p id="created" class="text-left cursive">{{ note.created|date:"P - l - jS - F - Y"  }}</p>
+                        </div>
+                        <div class="col-4">
+                            <p id="created_by" class="text-right cursive">Created By: <strong id="user">{{ note.created_by }}</strong></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div>
-            <ul id="home-list" class="d-flex">
-                {% if request.user.is_authenticated %}
-                    <li>
-                        <a class="home-list-item" href="#">To-Do List</a>
-                    </li>     
-                    <li>
-                        <a class="home-list-item" href="{% url 'account_logout' %}">Logout</a>
-                    </li>     
-                    <li>
-                        <a class="home-list-item" href="mailto:cleaners@cleaners.com">E-mail Cleaners</a>
-                    </li>                
-                {% else %}
-                    <li>
-                        <a class="home-list-item" id="login-button" href="{% url 'account_login' %}">Login</a>
-                    </li>
-                {% endif %}
-            </ul>
-        </div>
-    </div>
+        {% endfor %}
 {% endblock %}
 
 {% block postloadjs %}

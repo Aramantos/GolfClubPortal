@@ -50,7 +50,8 @@ INSTALLED_APPS = [
 
     # Custome Apps
 
-    'home'
+    'home',
+    'notes',
 ]
 
 MIDDLEWARE = [
@@ -64,6 +65,7 @@ MIDDLEWARE = [
 ]
 
 SESSION_COOKIE_AGE = 3600
+SESSION_SAVE_EVERY_REQUEST = True
 
 ROOT_URLCONF = 'golf_club_portal.urls'
 

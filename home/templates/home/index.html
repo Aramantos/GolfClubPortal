@@ -10,7 +10,7 @@
 {% endblock %}
 
 {% block content %}
-    <div class="container custom-container fade-in">
+    <div id="home-container" class="container custom-container fade-in">
         <a href="#">
             <h1 id="date" class="text-center"></h1>
         </a>
@@ -24,17 +24,17 @@
             <ul id="home-list" class="d-flex">
                 {% if request.user.is_authenticated %}
                     <li>
-                        <a class="home-list-item" href="#">To-Do List</a>
+                        <a class="custom-button" href="#">To-Do List</a>
                     </li>     
                     <li>
-                        <a class="home-list-item" href="{% url 'account_logout' %}">Logout</a>
+                        <a class="custom-button" href="{% url 'account_logout' %}">Logout</a>
                     </li>     
                     <li>
-                        <a class="home-list-item" href="mailto:cleaners@cleaners.com">E-mail Cleaners</a>
+                        <a class="custom-button" href="mailto:cleaners@cleaners.com">E-mail Cleaners</a>
                     </li>                
                 {% else %}
                     <li>
-                        <a class="home-list-item" id="login-button" href="{% url 'account_login' %}">Login</a>
+                        <a class="custom-button" id="login-button" href="{% url 'account_login' %}">Login</a>
                     </li>
                 {% endif %}
             </ul>

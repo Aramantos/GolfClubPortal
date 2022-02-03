@@ -1,0 +1,49 @@
+:root {
+    --queen-pink: #d6c3c9ff;
+    --almond: #E9D7C3ff;
+    --glaucous: #5589C3ff;
+    --olivine: #9BAD63ff;
+    --gunmetal: #022936ff;
+}
+
+hr {
+    border-top: 1px solid var(--gunmetal);
+}
+
+p {
+    margin-bottom: 0;
+}
+
+.note-card {
+    height: auto!important;
+    font-size: 1.3rem;
+    margin: 5vh auto 5vh;
+}
+
+#note-title{
+    font-size: 1.7rem;
+    font-family: cursive;
+}
+
+#description {
+    font-size: 1.3rem;
+    padding: 10px;
+    color: #000000;
+    background: #a99c8c;
+    border: ridge 12px #a99272;
+}
+
+#created {
+    font-size: 1.2rem;
+}
+
+#created_by{
+    font-size: 1.2rem;
+}
+
+#user{
+    font-size: 1.2rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}

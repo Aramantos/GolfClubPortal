@@ -12,9 +12,3 @@ var year = date.getFullYear();
 var time = date.toLocaleTimeString();
 
 document.getElementById('date').innerHTML = day + " - " + num_date + " - " + month + " - " + year;
-
-$(document).ready(function () {
-    $('.home-list-item').on("hover", function() {
-        $('.home-list-item-a').css("color", "white");
-    });
-});
