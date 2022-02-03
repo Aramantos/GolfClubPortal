@@ -6,6 +6,15 @@
     --gunmetal: #022936ff;
 }
 
+#date{
+    font-family: cursive;
+    margin-bottom: 5vh;
+}
+
+#home-container {
+    opacity: 0;
+}
+
 #home-info {
     background: var(--glaucous);
     border-radius: 10px;

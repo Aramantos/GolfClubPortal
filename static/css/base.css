@@ -6,6 +6,10 @@
     --gunmetal: #022936ff;
 }
 
+.cursive{
+    font-family: cursive;
+}
+
 body{
     background: url(/media/dunmore.jpeg) no-repeat center center fixed;
     background-size: cover;
@@ -84,7 +88,6 @@ body{
     padding: 20px;
     margin-top: 20vh;
     border: dotted 5px var(--gunmetal);
-    opacity: 0;
 }
 
 .custom-container a{
@@ -96,6 +99,25 @@ body{
     padding: 0;
     list-style: none;
     justify-content: space-evenly;
+}
+
+.custom-button{
+    color: var(--gunmetal)!important;
+    border: solid var(--gunmetal) 3px;
+    border-radius: 10px;
+    background: aliceblue;
+    font-size: 1.3rem;
+    padding: 15px;
+    font-weight: 700;
+    text-transform: capitalize;
+}
+
+.custom-button:hover{
+    color: aliceblue!important;
+    border: solid aliceblue 3px;
+    border-radius: 10px;
+    background: var(--gunmetal);
+    text-decoration: none;
 }
 
 /*------------------animations*/
@@ -113,6 +135,34 @@ body{
     }
     100% {
         opacity: 80%;
+    }
+}
+
+.look-at-me {
+    animation: look-at-me 3s infinite;
+    font-size: 1.5rem;
+}
+
+@keyframes look-at-me {
+    0% {
+        color: var(--queen-pink);
+        text-shadow: 0 0 5px var(--gunmetal);
+    }
+    25% {
+        color: var(--glaucous);
+        text-shadow: 0 0 5px var(--olivine);
+    }
+    50% {
+        color: var(--gunmetal);
+        text-shadow: 0 0 5px var(--gunmetal);
+    }
+    75% {
+        color: var(--olivine);
+        text-shadow: 0 0 5px var(--glaucous);
+    }
+    100% {
+        color: var(--queen-pink);
+        text-shadow: 0 0 5px var(--gunmetal);
     }
 }
 
@@ -152,7 +202,7 @@ body{
     letter-spacing: 1px;
 }
 
-.allauth-card form button{
+/* .allauth-card form button{
     color: var(--gunmetal)!important;
     border: 2px solid aliceblue;
     padding: 10px;
@@ -169,7 +219,7 @@ body{
     border: 2px solid var(--gunmetal);
     background: var(--gunmetal);
     text-decoration: none;
-}
+} */
 
 #password-reset-button{
     color: var(--gunmetal)!important;
@@ -196,7 +246,7 @@ body{
 }
 
 #sign-out-card{
-    height: 20vh;
+    height: 18vh;
 }
 
 #sign-out-card p{
@@ -204,8 +254,18 @@ body{
     font-weight: 500;
 }
 
+#sign-out-card form div{
+    align-items: baseline;
+}
+
+#sign-out-btn {
+    line-height: initial;
+}
+
 #password-reset-card{
     height: 40vh;
 }
 
-
+#verify-card {
+    height: 20vh;
+}
