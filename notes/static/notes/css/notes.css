@@ -14,6 +14,43 @@ p {
     margin-bottom: 0;
 }
 
+#add-note {
+    font-size: 1.5rem;
+    position: fixed;
+    top: 20%;
+    right: 4%;
+    background: #e8d8c2;
+    color: #554939;
+    padding: 10px;
+    border-radius: 50%;
+    border: 5px solid;
+}
+
+#add-note:hover {
+    text-decoration: none;
+    background: #554939;
+    color: #e8d8c2;
+}
+
+#notes-navbar {
+    border: 10px ridge var(--queen-pink);
+}
+
+#notes-nav-title {
+    font-weight: 800;
+    color: var(--gunmetal);
+}
+
+#notes-nav-title:hover {
+    color: whitesmoke;
+    text-shadow: var(--gunmetal) 0 0 5px;
+    text-decoration: none;
+}
+
+.menu-nav-link {
+    font-size: 1.4rem;
+}
+
 .note-card {
     height: auto!important;
     font-size: 1.3rem;
@@ -22,7 +59,17 @@ p {
 
 #note-title{
     font-size: 1.7rem;
+    font-weight: 700;
     font-family: cursive;
+    letter-spacing: 1px;
+}
+
+#delete-note {
+    font-size: 1.7rem;
+}
+
+#close {
+    font-size: 1.3rem;
 }
 
 #description {
@@ -47,3 +94,4 @@ p {
     letter-spacing: 1px;
     text-transform: uppercase;
 }
+
