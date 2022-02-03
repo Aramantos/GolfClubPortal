@@ -63,6 +63,8 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
+SESSION_COOKIE_AGE = 3600
+
 ROOT_URLCONF = 'golf_club_portal.urls'
 
 TEMPLATES = [
