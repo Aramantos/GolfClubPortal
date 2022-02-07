@@ -52,7 +52,7 @@
 {% endblock %}
 
 {% block content %}
-    <a id="add-note" href=""><i class="fas fa-sticky-note"></i> <i class="far fa-plus-square"></i></a>
+    <a id="add-note" href="{% url 'add_note' %}"><i class="fas fa-sticky-note"></i> <i class="far fa-plus-square"></i></a>
     <div class="my-5"></div>
     {% for note in notes reversed %}
         <div class="note-card container custom-container">

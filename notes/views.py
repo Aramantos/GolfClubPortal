@@ -1,7 +1,12 @@
 from django.shortcuts import render, redirect, reverse, get_object_or_404
+from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from django.contrib.admin.views.decorators import staff_member_required
 
+from .forms import NoteForm
 from .models import Note, Category
+
+from django.contrib.auth.models import User
 
 
 @login_required
@@ -30,6 +35,30 @@ def notes(request):
     }
 
     return render(request, 'notes/notes.html', context)
+
+
+@login_required
+def add_note(request):
+    """ Add an note to the notes page """
+    if request.method == 'POST':
+        form = NoteForm(request.POST)
+        if form.is_valid():
+            form.save()
+            print("success")
+            # messages.success(request, 'Successfully added your image')
+            return redirect(reverse('notes'))
+        else:
+            print("error")
+            # messages.error(request, 'Failed to add your image. Please ensure the form is valid.')
+    else:
+        form = NoteForm()
+
+    template = 'notes/add_note.html'
+    context = {
+        'form': form,
+    }
+
+    return render(request, template, context)
 
 
 @login_required

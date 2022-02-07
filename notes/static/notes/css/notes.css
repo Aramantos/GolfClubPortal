@@ -6,6 +6,10 @@
     --gunmetal: #022936ff;
 }
 
+.customer-container {
+    height: 40vh;
+}
+
 hr {
     border-top: 1px solid var(--gunmetal);
 }
@@ -95,3 +99,57 @@ p {
     text-transform: uppercase;
 }
 
+#add-note-header {
+    height: 10vh;
+    margin-top: 5vh;
+    border: 10px ridge var(--queen-pink);
+}
+
+#add-note-form {
+    margin: 5vh auto;
+}
+
+.control-label {
+    font-family: cursive;
+    font-size: 1.5rem;
+    text-decoration: underline;
+}
+
+.select, .textarea {
+    font-size: 1.3rem;
+}
+
+.select {
+    width: 25vw;
+    text-align: center;
+}
+
+#id_title {
+    font-size: 1.3rem;
+    width: 30vw;
+    text-align: center;
+}
+
+.textarea {
+    width: 35vw;
+    text-align: center;
+}
+
+label {
+    margin-top: 2vh ;
+    font-size: 2rem;
+    font-family: cursive;
+}
+
+#add-note-submit {
+    line-height: initial;
+}
+
+input[type='checkbox'] {
+    width: 40px;
+    height: 22px;
+    margin-top: 10px;
+}
+/* input[type='checkbox']:checked {
+    background: #abd;
+} */

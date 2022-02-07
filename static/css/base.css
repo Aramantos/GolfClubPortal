@@ -83,7 +83,6 @@ body{
 
 .custom-container{
     background: var(--almond);
-    height: 40vh;
     width: 50vw;
     padding: 20px;
     margin-top: 20vh;

@@ -12,6 +12,7 @@
 }
 
 #home-container {
+    height: 40vh;
     opacity: 0;
 }
 
