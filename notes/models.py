@@ -18,11 +18,12 @@ class Category(models.Model):
 
 
 class Note(models.Model):
+    
     category = models.ForeignKey('Category', null=True, blank=True, on_delete=models.SET_NULL)
     title = models.CharField(max_length=254)
     description = models.TextField()
     created = models.DateTimeField(auto_now_add=True)
-    created_by = models.ForeignKey(User, blank=False, null=True, on_delete=models.SET_NULL)
+    created_by = models.ForeignKey(User, blank=True, null=True, on_delete=models.SET_NULL)
     urgent = models.BooleanField(default=False)
 
     def __str__(self):

@@ -6,6 +6,7 @@ from django.contrib.admin.views.decorators import staff_member_required
 from .forms import NoteForm
 from .models import Note, Category
 
+from django.contrib.sessions.models import Session
 from django.contrib.auth.models import User
 
 
@@ -40,8 +41,13 @@ def notes(request):
 @login_required
 def add_note(request):
     """ Add an note to the notes page """
+
+    user = request.user.username
+    print(user)
+
     if request.method == 'POST':
         form = NoteForm(request.POST)
+        NoteForm(initial={'created_by': user})
         if form.is_valid():
             form.save()
             print("success")
@@ -56,9 +62,21 @@ def add_note(request):
     template = 'notes/add_note.html'
     context = {
         'form': form,
+        'user': user,
     }
 
     return render(request, template, context)
+
+
+@login_required
+def edit_note(request, note_id):
+    """ Edit an note on the notes page """
+
+    note = get_object_or_404(Note, pk=note_id)
+    note.urgent = False
+    note.save()
+
+    return redirect(reverse('notes'))
 
 
 @login_required

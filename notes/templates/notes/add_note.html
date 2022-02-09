@@ -24,11 +24,7 @@
                 <form method="POST" action="{% url 'add_note' %}" class="form mb-2" enctype="multipart/form-data">
                     {% csrf_token %}
                     {% for field in form %}
-                        {% if field.name != 'image' %}
-                            {{ field | as_crispy_field }}
-                        {% else %}
-                            {{ field }}
-                        {% endif %}
+                        {{ field | as_crispy_field }}
                     {% endfor %}
                     <div class="text-center">
                         <a class="custom-button" href="{% url 'notes' %}">Cancel</a>
