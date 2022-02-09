@@ -3,6 +3,9 @@ from django.db import models
 
 class HousingType(models.Model):
 
+    class Meta:
+        verbose_name_plural = 'Housing Type'
+
     name = models.CharField(max_length=254)
     friendly_name = models.CharField(max_length=254, null=True, blank=True)
 
@@ -14,6 +17,9 @@ class HousingType(models.Model):
 
 
 class Housing(models.Model):
+
+    class Meta:
+        verbose_name_plural = 'Housing'
 
     type = models.ForeignKey('HousingType', null=True, blank=True, on_delete=models.SET_NULL)
     title = models.CharField(max_length=254)

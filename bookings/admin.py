@@ -8,6 +8,9 @@ class HousingAdmin(admin.ModelAdmin):
     list_display = (
         'title',
         'type',
+        'water',
+        'heat',
+        'clean',
     )
 
     ordering = ('title',)

@@ -1,0 +1,11 @@
+#housing-header {
+    height: 10vh;
+    margin-top: 5vh;
+    border: 10px ridge var(--queen-pink);
+}
+
+#accordion {
+    width: 75%;
+    margin: 5vh auto;
+    border: 10px ridge var(--queen-pink);
+}
