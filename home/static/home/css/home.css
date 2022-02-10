@@ -8,20 +8,23 @@
 
 #date{
     font-family: cursive;
-    margin-bottom: 5vh;
+    margin-bottom: 3vh;
 }
 
 #home-container {
-    height: 40vh;
     opacity: 0;
 }
 
-#home-info {
+#checkin-info, #notes-info {
     background: var(--glaucous);
     border-radius: 10px;
     color: #fdf4f7;
-    margin-bottom: 10vh;
+    margin-bottom: 5vh;
     text-shadow: 0 0 5px var(--gunmetal);
+}
+
+#checkin-info li a, #notes-info li a {
+    color: #fdf4f7;
 }
 
 .home-list-item{

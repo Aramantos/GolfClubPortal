@@ -1,0 +1,41 @@
+
+{% extends "base.html" %}
+{% load static %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'bookings/css/bookings.css' %}">
+{% endblock %}
+
+{% block page_header %}
+{% endblock %}
+
+{% block content %}
+    <div id="add-note-header" class="container custom-container w-25">
+        <div class="row">
+            <div class="col-12 text-center">
+                <h2 class="cursive">Add a Booking</h2>
+            </div>
+        </div>
+    </div>
+
+    <div id="add-note-form" class="custom-container">
+        <div class="row">
+            <div class="col-12 text-center">
+                <form method="POST" action="{% url 'add_booking' %}" class="form mb-2" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    {% for field in form %}
+                        {{ field | as_crispy_field }}
+                    {% endfor %}
+                    <div class="text-center">
+                        <a class="custom-button" href="{% url 'view_bookings' %}">Cancel</a>
+                        <button id="add-note-submit" class="custom-button" type="submit">Add Booking</button>
+                    </div>
+                </form>
+            </div>            
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block postloadjs %}
+{% endblock %}

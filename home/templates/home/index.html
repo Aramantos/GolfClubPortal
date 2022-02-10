@@ -15,8 +15,12 @@
             <h1 id="date" class="text-center"></h1>
         </a>
         <div>
-            <ul id="home-info" class="d-flex">
-                <li>Todays Checkins - </li>
+            <ul id="notes-info" class="d-flex">
+                <li>
+                    <a href="{% url 'notes' %}">
+                        Total Notes - {{ notes|length }}
+                    </a>
+                </li>
                 {% if urgent|length > 0 %}
                     <li class="look-at-me">
                         <a href="{% url 'notes' %}?urgent=true">
@@ -26,6 +30,22 @@
                 {% else %}
                     <li>
                         Urgent Notes - {{ urgent|length }}
+                    </li>
+                {% endif %}
+            </ul>
+        </div>
+        <div>
+            <ul id="checkin-info" class="d-flex">
+                <li>Total Bookings - {{ bookings|length }}</li>
+                {% if bookings|length > 0 %}
+                    <li class="look-at-me">
+                        <a href="">
+
+                        </a>
+                    </li>
+                {% else %}
+                    <li>
+                        Todays Check-Ins - {{ bookings|length }}
                     </li>
                 {% endif %}
             </ul>

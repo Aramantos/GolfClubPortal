@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'bookings/css/bookings.css' %}">
+{% endblock %}
+
+{% block extra_js %}
+{% endblock %}
+
+{% block page_header %}
+{% endblock %}
+
+{% block content %}
+    <a id="add-note" href="{% url 'add_booking' %}"><i class="fas fa-sticky-note"></i> <i class="far fa-plus-square"></i></a>
+    <div class="my-5"></div>
+    {% for booking in bookings reversed %}
+        <div class="note-card container custom-container">
+            <div class="col-12">
+                <div>
+                    <div class="row">
+                        <div class="col-8">
+                            <p id="note-title" class="text-left">{{ booking.name }}</p>
+                        </div>
+                        <div class="col-4 text-right">
+                            {{ booking.checkin_date }} - {{ booking.checkout_date }}
+                        </div>
+                    </div>
+                    <hr>
+                    <p id="description" class="text-center">{{ booking.details }}</p>
+                    <hr>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+{% endblock %}
+
+{% block postloadjs %}
+{% endblock %}

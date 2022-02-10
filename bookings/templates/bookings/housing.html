@@ -21,9 +21,9 @@
     </div>
     <div id="accordion">
         <div class="card">
-            <div class="card-header" id="headingOne">
+            <div class="card-header text-center" id="headingOne">
                 <h5 class="mb-0">
-                    <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true"
+                    <button class="btn btn-link cursive" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true"
                         aria-controls="collapseOne">
                         Apartments
                     </button>
@@ -33,14 +33,19 @@
             <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
                 <div class="card-body">
                     {% for apartment in apartments %}
+                        <p>{{apartment.title}}</p>
+                        <p>{{apartment.description}}</p>
+                        <p>{{apartment.water}}</p>
+                        <p>{{apartment.heat}}</p>
+                        <p>{{apartment.clean}}</p>
                     {% endfor %}
                 </div>
             </div>
         </div>
         <div class="card">
-            <div class="card-header" id="headingTwo">
+            <div class="card-header text-center" id="headingTwo">
                 <h5 class="mb-0">
-                    <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo"
+                    <button class="btn btn-link collapsed cursive" data-toggle="collapse" data-target="#collapseTwo"
                         aria-expanded="false" aria-controls="collapseTwo">
                         Cottages
                     </button>
@@ -49,14 +54,19 @@
             <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
                 <div class="card-body">
                     {% for cottage in cottages %}
+                        <p>{{cottage.title}}</p>
+                        <p>{{cottage.description}}</p>
+                        <p>{{cottage.water}}</p>
+                        <p>{{cottage.heat}}</p>
+                        <p>{{cottage.clean}}</p>
                     {% endfor %}
                 </div>
             </div>
         </div>
         <div class="card">
-            <div class="card-header" id="headingThree">
+            <div class="card-header text-center" id="headingThree">
                 <h5 class="mb-0">
-                    <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseThree"
+                    <button class="btn btn-link collapsed cursive" data-toggle="collapse" data-target="#collapseThree"
                         aria-expanded="false" aria-controls="collapseThree">
                         Lodges
                     </button>
@@ -65,6 +75,11 @@
             <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
                 <div class="card-body">
                     {% for lodge in lodges %}
+                        <p>{{lodge.title}}</p>
+                        <p>{{lodge.description}}</p>
+                        <p>{{lodge.water}}</p>
+                        <p>{{lodge.heat}}</p>
+                        <p>{{lodge.clean}}</p>
                     {% endfor %}
                 </div>
             </div>

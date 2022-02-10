@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Housing, HousingType
+from .models import Housing, HousingType, Booking
 
 # Register your models here.
 
@@ -23,5 +23,16 @@ class HousingTypeAdmin(admin.ModelAdmin):
     )
 
 
+class BookingAdmin(admin.ModelAdmin):
+    list_display = (
+        'name',
+        'housing',
+        'checkin_date',
+        'checkout_date',
+    )
+
+
+
 admin.site.register(Housing, HousingAdmin)
 admin.site.register(HousingType, HousingTypeAdmin)
+admin.site.register(Booking, BookingAdmin)

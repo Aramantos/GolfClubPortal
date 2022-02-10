@@ -1,3 +1,11 @@
+:root {
+    --queen-pink: #d6c3c9ff;
+    --almond: #E9D7C3ff;
+    --glaucous: #5589C3ff;
+    --olivine: #9BAD63ff;
+    --gunmetal: #022936ff;
+}
+
 #housing-header {
     height: 10vh;
     margin-top: 5vh;
@@ -8,4 +16,20 @@
     width: 75%;
     margin: 5vh auto;
     border: 10px ridge var(--queen-pink);
+}
+
+.card-header {
+    background: var(--almond);
+    border: 5px ridge var(--almond);
+}
+
+.btn-link{
+    font-size: 1.8rem;
+    letter-spacing: 1px;
+    color: var(--gunmetal);
+}
+
+.btn-link:hover{
+    color: var(--gunmetal);
+    text-shadow: 0 0 5px var(--almond);
 }

@@ -10,6 +10,7 @@ def index(request):
     urgent = notes.filter(urgent = True)
 
     context = {
+        'notes': notes,
         'urgent': urgent,
     }
 
