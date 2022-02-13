@@ -36,16 +36,22 @@
         </div>
         <div>
             <ul id="checkin-info" class="d-flex">
-                <li>Total Bookings - {{ bookings|length }}</li>
-                {% if bookings|length > 0 %}
+                <li>
+                    <a href="{% url 'view_bookings' %}">
+                        Total Bookings - {{ bookings|length }}
+                    </a>
+                </li>
+                {% if tday_bookings|length > 0 %}
                     <li class="look-at-me">
-                        <a href="">
-
+                        <a href="{% url 'view_bookings' %}">
+                            Todays Check-Ins - {{ tday_bookings|length }}
                         </a>
                     </li>
                 {% else %}
                     <li>
-                        Todays Check-Ins - {{ bookings|length }}
+                        <a href="{% url 'view_bookings' %}">
+                            Todays Check-Ins - {{ tday_bookings|length }}
+                        </a>
                     </li>
                 {% endif %}
             </ul>

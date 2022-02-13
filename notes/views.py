@@ -15,7 +15,6 @@ def notes(request):
     """ A view to return the notes page """
 
     notes = Note.objects.all()
-    query = None
     categories = None
     urgentcheck = None
 
@@ -32,7 +31,6 @@ def notes(request):
 
     context = {
         'notes': notes,
-        'search_term': query,
     }
 
     return render(request, 'notes/notes.html', context)
