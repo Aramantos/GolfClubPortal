@@ -21,11 +21,12 @@
     <div id="add-note-form" class="custom-container">
         <div class="row">
             <div class="col-12 text-center">
-                <form method="POST" action="{% url 'add_booking' %}" class="form mb-2" enctype="multipart/form-data">
+                <form method="POST" action="{% url 'add_booking' %}" class="form mb-2" enctype="multipart/form-data" autocomplete="off">
                     {% csrf_token %}
                     {% for field in form %}
                         {{ field | as_crispy_field }}
                     {% endfor %}
+                    <p id="date-example" class="cursive mb-2">Date Format Example: 2022-12-25</p>
                     <div class="text-center">
                         <a class="custom-button" href="{% url 'view_bookings' %}">Cancel</a>
                         <button id="add-note-submit" class="custom-button" type="submit">Add Booking</button>
