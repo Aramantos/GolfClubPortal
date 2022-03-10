@@ -26,12 +26,12 @@ class Housing(models.Model):
         """ Change name in admin panel """
         verbose_name_plural = 'Housing'
 
-    type = models.ForeignKey('HousingType', null=True, blank=True, on_delete=models.SET_NULL)
+    h_type = models.ForeignKey('HousingType', null=True, blank=True, on_delete=models.SET_NULL)
     title = models.CharField(max_length=254)
     description = models.TextField()
     water = models.BooleanField(default=False)
     heat = models.BooleanField(default=False)
-    clean = models.BooleanField(default=False)
+    tidy = models.BooleanField(default=False)
 
     def __str__(self):
         return self.title

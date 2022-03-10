@@ -7,6 +7,8 @@ from .models import Housing, HousingType, Booking
 
 from .forms import BookingForm
 
+from datetime import date, datetime
+
 
 @login_required
 def housing_list(request):
@@ -74,6 +76,28 @@ def view_bookings(request):
     """ A view to return the bookings page """
 
     bookings = Booking.objects.all()
+    housing = None
+    tday_check = None
+    tday = date.today()
+    tday_bookings = bookings.filter(checkin_date = tday)
+    # next_seven_days = datetime.datetime.now() + datetime.timedelta(days=7)
+
+    if request.GET:
+        if 'category' in request.GET:
+            categories = request.GET['category'].split(',')
+            notes = notes.filter(category__name__in=categories)
+            categories = Category.objects.filter(name__in=categories)
+
+        if 'tday' in request.GET:
+            tday_check = request.GET['tday'].split(',')
+            bookings = bookings.filter(checkin_date = tday)
+            tday_check = Booking.objects.filter(checkin_date = tday)
+
+    context = {
+        'bookings': bookings,
+        # 'tday': tday,
+        # 'next_seven_days': next_seven_days,
+    }
 
     context = {
         'bookings': bookings,
@@ -93,7 +117,7 @@ def add_booking(request):
             print("success")
             # messages.success(request, 'Successfully added your image')
             print("success")
-            return redirect(reverse('bookings'))
+            return redirect(reverse('view_bookings'))
         else:
             print("error")
             # messages.error(request, 'Failed to add your image. Please ensure the form is valid.')

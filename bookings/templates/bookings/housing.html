@@ -32,13 +32,41 @@
 
             <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
                 <div class="card-body">
-                    {% for apartment in apartments %}
-                        <p>{{apartment.title}}</p>
-                        <p>{{apartment.description}}</p>
-                        <p>{{apartment.water}}</p>
-                        <p>{{apartment.heat}}</p>
-                        <p>{{apartment.clean}}</p>
-                    {% endfor %}
+                    <style>
+                        table {
+                          font-family: arial, sans-serif;
+                          border-collapse: collapse;
+                          width: 100%;
+                        }
+                        
+                        td, th {
+                          border: 1px solid #dddddd;
+                          text-align: left;
+                          padding: 8px;
+                        }
+                        
+                        tr:nth-child(even) {
+                          background-color: #dddddd;
+                        }
+                        </style>
+                    <table>
+                        <tr>
+                          <th>Housing</th>
+                          <th>Water</th>
+                          <th>Power</th>
+                          <th>Tidy</th>
+                        </tr>
+                        {% for apartment in housing %}
+                            {% if apartment.h_type.name == "apartments" %}
+                                <tr>
+                                    <td>{{apartment.title}}</td>
+                                    <td>{{apartment.water}}</td>
+                                    <td>{{apartment.heat}}</td>
+                                    <td>{{apartment.clean}}</td>
+                                </tr>
+                            {% endif %}
+                        {% endfor %}
+                      </table>
                 </div>
             </div>
         </div>
@@ -53,13 +81,24 @@
             </div>
             <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
                 <div class="card-body">
-                    {% for cottage in cottages %}
-                        <p>{{cottage.title}}</p>
-                        <p>{{cottage.description}}</p>
-                        <p>{{cottage.water}}</p>
-                        <p>{{cottage.heat}}</p>
-                        <p>{{cottage.clean}}</p>
-                    {% endfor %}
+                    <table>
+                        <tr>
+                          <th>Housing</th>
+                          <th>Water</th>
+                          <th>Power</th>
+                          <th>Tidy</th>
+                        </tr>
+                        {% for cottage in housing %}
+                            {% if cottage.h_type.name == "cottages" %}
+                                <tr>
+                                    <td>{{cottage.title}}</td>
+                                    <td>{{cottage.water}}</td>
+                                    <td>{{cottage.heat}}</td>
+                                    <td>{{cottage.clean}}</td>
+                                </tr>
+                            {% endif %}
+                        {% endfor %}
+                      </table>
                 </div>
             </div>
         </div>
@@ -74,13 +113,24 @@
             </div>
             <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
                 <div class="card-body">
-                    {% for lodge in lodges %}
-                        <p>{{lodge.title}}</p>
-                        <p>{{lodge.description}}</p>
-                        <p>{{lodge.water}}</p>
-                        <p>{{lodge.heat}}</p>
-                        <p>{{lodge.clean}}</p>
-                    {% endfor %}
+                    <table>
+                        <tr>
+                          <th>Housing</th>
+                          <th>Water</th>
+                          <th>Power</th>
+                          <th>Tidy</th>
+                        </tr>
+                        {% for lodge in housing %}
+                            {% if lodge.h_type.name == "lodges" %}
+                                <tr>
+                                    <td>{{lodge.title}}</td>
+                                    <td>{{lodge.water}}</td>
+                                    <td>{{lodge.heat}}</td>
+                                    <td>{{lodge.clean}}</td>
+                                </tr>
+                            {% endif %}
+                        {% endfor %}
+                      </table>
                 </div>
             </div>
         </div>

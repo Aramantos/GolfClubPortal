@@ -7,10 +7,10 @@ from .models import Housing, HousingType, Booking
 class HousingAdmin(admin.ModelAdmin):
     list_display = (
         'title',
-        'type',
+        'h_type',
         'water',
         'heat',
-        'clean',
+        'tidy',
     )
 
     ordering = ('title',)
@@ -30,7 +30,6 @@ class BookingAdmin(admin.ModelAdmin):
         'checkin_date',
         'checkout_date',
     )
-
 
 
 admin.site.register(Housing, HousingAdmin)
