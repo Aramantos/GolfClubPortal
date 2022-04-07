@@ -7,7 +7,7 @@ from .models import Housing, HousingType, Booking
 
 from .forms import BookingForm
 
-from datetime import date, datetime
+from datetime import date, datetime, timedelta
 
 
 @login_required
@@ -75,29 +75,30 @@ def clean_check(request, housing_id):
 def view_bookings(request):
     """ A view to return the bookings page """
 
+    housing = Housing.objects.all()
     bookings = Booking.objects.all()
-    housing = None
-    tday_check = None
-    tday = date.today()
-    tday_bookings = bookings.filter(checkin_date = tday)
+
+    this_day = date.today()
+    next_day = this_day + timedelta(days=1)
+
+    h_types = None
+
     # next_seven_days = datetime.datetime.now() + datetime.timedelta(days=7)
 
+    # notes = Note.objects.all()
+    # categories = None
+    # urgentcheck = None
+
     if request.GET:
-        if 'category' in request.GET:
-            categories = request.GET['category'].split(',')
-            notes = notes.filter(category__name__in=categories)
-            categories = Category.objects.filter(name__in=categories)
+        if 'housing_type' in request.GET:
+            h_types = request.GET['housing_type'].split(',')
+            bookings = Booking.objects.filter(housing__h_type__name__in=h_types)
+            h_types = HousingType.objects.filter(name__in=h_types)
 
-        if 'tday' in request.GET:
-            tday_check = request.GET['tday'].split(',')
-            bookings = bookings.filter(checkin_date = tday)
-            tday_check = Booking.objects.filter(checkin_date = tday)
-
-    context = {
-        'bookings': bookings,
-        # 'tday': tday,
-        # 'next_seven_days': next_seven_days,
-    }
+        if 'this_day' in request.GET:
+            bookings = bookings.filter(checkin_date=this_day)
+        if 'next_day' in request.GET:
+            bookings = bookings.filter(checkin_date=next_day)
 
     context = {
         'bookings': bookings,
