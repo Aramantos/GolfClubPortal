@@ -75,33 +75,34 @@ def clean_check(request, housing_id):
 def view_bookings(request):
     """ A view to return the bookings page """
 
-    housing = Housing.objects.all()
     bookings = Booking.objects.all()
-
-    this_day = date.today()
-    next_day = this_day + timedelta(days=1)
 
     h_types = None
 
-    # next_seven_days = datetime.datetime.now() + datetime.timedelta(days=7)
-
-    # notes = Note.objects.all()
-    # categories = None
-    # urgentcheck = None
+    this_day = date.today()
+    next_day = this_day + timedelta(days=1)
+    seven_days = date.today() + timedelta(days=7)
+    next_month = date.today() + timedelta(days=30)
 
     if request.GET:
         if 'housing_type' in request.GET:
             h_types = request.GET['housing_type'].split(',')
             bookings = Booking.objects.filter(housing__h_type__name__in=h_types)
-            h_types = HousingType.objects.filter(name__in=h_types)
+            # h_types = HousingType.objects.filter(name__in=h_types)
 
         if 'this_day' in request.GET:
             bookings = bookings.filter(checkin_date=this_day)
         if 'next_day' in request.GET:
             bookings = bookings.filter(checkin_date=next_day)
+        if 'next_seven_days' in request.GET:
+            bookings = bookings.filter(checkin_date__gte=this_day, checkin_date__lte=seven_days)
+        if 'next_month' in request.GET:
+            bookings = bookings.filter(checkin_date__gte=this_day, checkin_date__lte=next_month)
 
     context = {
         'bookings': bookings,
+        'this_day': this_day,
+        'seven_days': seven_days,
     }
 
     return render(request, 'bookings/bookings.html', context)
@@ -116,12 +117,12 @@ def add_booking(request):
         if form.is_valid():
             form.save()
             print("success")
-            # messages.success(request, 'Successfully added your image')
+            # messages.success(request, 'Successfully added your booking')
             print("success")
             return redirect(reverse('view_bookings'))
         else:
             print("error")
-            # messages.error(request, 'Failed to add your image. Please ensure the form is valid.')
+            # messages.error(request, 'Failed to add your booking. Please ensure the form is valid.')
     else:
         form = BookingForm()
 
@@ -142,15 +143,15 @@ def edit_booking(request, booking_id):
         form = BookingForm(request.POST, instance=booking)
         if form.is_valid():
             form.save()
-            # messages.success(request, 'Successfully updated the image!')
+            # messages.success(request, 'Successfully updated the booking!')
             print("success")
             return redirect(reverse('gallery'))
         else:
             print("error")
-            # messages.error(request, 'Failed to update image. Please ensure the form is valid.')
+            # messages.error(request, 'Failed to update booking. Please ensure the form is valid.')
     else:
         form = BookingForm(instance=booking)
-        # messages.info(request, f'You are editing the image for order number {image.order_number}')
+        # messages.info(request, f'You are editing the booking for order number {image.order_number}')
 
     template = 'bookings/edit_booking.html'
     context = {

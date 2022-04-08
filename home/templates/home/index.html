@@ -36,21 +36,55 @@
         </div>
         <div>
             <ul id="checkin-info" class="d-flex">
-                <li>
-                    <a href="{% url 'view_bookings' %}">
-                        Total Bookings - {{ bookings|length }}
-                    </a>
-                </li>
-                {% if tday_bookings|length > 0 %}
+                {% if bookings_month|length > 0 %}
                     <li class="look-at-me">
-                        <a href="{% url 'view_bookings' %}">
-                            Todays Check-Ins - {{ tday_bookings|length }}
+                        <a href="{% url 'view_bookings' %}?next_month">
+                            Month - {{ bookings_month|length }}
                         </a>
                     </li>
                 {% else %}
                     <li>
-                        <a href="{% url 'view_bookings' %}">
-                            Todays Check-Ins - {{ tday_bookings|length }}
+                        <a href="{% url 'view_bookings' %}?next_month">
+                            Month - {{ bookings_month|length }}
+                        </a>
+                    </li>
+                {% endif %}
+                {% if bookings_week|length > 0 %}
+                    <li class="look-at-me">
+                        <a href="{% url 'view_bookings' %}?next_seven_days">
+                            Week - {{ bookings_week|length }}
+                        </a>
+                    </li>
+                {% else %}
+                    <li>
+                        <a href="{% url 'view_bookings' %}?next_seven_days">
+                            Week - {{ bookings_week|length }}
+                        </a>
+                    </li>
+                {% endif %}
+                {% if tmrw_bookings|length > 0 %}
+                    <li class="look-at-me">
+                        <a href="{% url 'view_bookings' %}?next_day">
+                            Tomorrow - {{ tmrw_bookings|length }}
+                        </a>
+                    </li>
+                {% else %}
+                    <li>
+                        <a href="{% url 'view_bookings' %}?next_day">
+                            Tomorrow - {{ tmrw_bookings|length }}
+                        </a>
+                    </li>
+                {% endif %}
+                {% if tday_bookings|length > 0 %}
+                    <li class="look-at-me">
+                        <a href="{% url 'view_bookings' %}?this_day">
+                            Today - {{ tday_bookings|length }}
+                        </a>
+                    </li>
+                {% else %}
+                    <li>
+                        <a href="{% url 'view_bookings' %}this_day">
+                            Today - {{ tday_bookings|length }}
                         </a>
                     </li>
                 {% endif %}

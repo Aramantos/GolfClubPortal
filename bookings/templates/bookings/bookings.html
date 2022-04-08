@@ -28,9 +28,15 @@
                             <li class="nav-item">
                                 <a class="nav-link menu-nav-link cursive" href="{% url 'view_bookings' %}?next_day">Tomorrow</a>
                             </li>
-                            <!-- <li class="nav-item">
-                                <a class="nav-link menu-nav-link cursive look-at-me" href="{% url 'view_bookings' %}?this_week">This Week</a>
-                            </li> -->
+                            <li class="nav-item">
+                                <a class="nav-link menu-nav-link cursive" href="{% url 'view_bookings' %}?next_seven_days">Week</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link menu-nav-link cursive" href="{% url 'view_bookings' %}?next_month">Month</a>
+                            </li>
+                            <li class="nav-item">
+                                <p id="divider" class="nav-link menu-nav-link">-</p>
+                            </li>
                             <li class="nav-item">
                                 <a class="nav-link menu-nav-link cursive" href="{% url 'view_bookings' %}?housing_type=apartments">Apartments</a>
                             </li>
@@ -51,7 +57,7 @@
 {% block content %}
     <a id="add-note" href="{% url 'add_booking' %}"><i class="fa-solid fa-calendar"></i> <i class="far fa-plus-square"></i></a>
     <div class="my-5"></div>
-    {% for booking in bookings reversed %}
+    {% for booking in bookings|dictsort:"checkin_date" %}
         <div class="note-card container custom-container">
             <div class="col-12">
                 <div>
@@ -72,12 +78,18 @@
                         </div>
                         <div class="col-6">
                             <p id="created_by" class="text-right cursive">Checkout: {{ booking.checkout_date }}</p>
+                            {% if request.GET.this_day %}
+                              <h1>THIS DAY</h1>
+                            {% endif %}
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        {% endfor %}
+    {% endfor %}
+    {% if request.GET.this_day %}
+        <h1>THIS DAY</h1>
+    {% endif %}
 {% endblock %}
 
 {% block postloadjs %}
