@@ -14,100 +14,124 @@
         <a href="#">
             <h1 id="date" class="text-center"></h1>
         </a>
-        <div>
-            <ul id="notes-info" class="d-flex">
-                <li>
-                    <a href="{% url 'notes' %}">
-                        Total Notes - {{ notes|length }}
-                    </a>
-                </li>
-                {% if urgent|length > 0 %}
-                    <li class="look-at-me">
-                        <a href="{% url 'notes' %}?urgent=true">
-                            Urgent Notes - {{ urgent|length }}
-                        </a>
-                    </li>
-                {% else %}
-                    <li>
-                        Urgent Notes - {{ urgent|length }}
-                    </li>
-                {% endif %}
-            </ul>
-        </div>
-        <div>
-            <ul id="checkin-info" class="d-flex">
-                {% if bookings_month|length > 0 %}
-                    <li class="look-at-me">
-                        <a href="{% url 'view_bookings' %}?next_month">
-                            Month - {{ bookings_month|length }}
-                        </a>
-                    </li>
-                {% else %}
-                    <li>
-                        <a href="{% url 'view_bookings' %}?next_month">
-                            Month - {{ bookings_month|length }}
-                        </a>
-                    </li>
-                {% endif %}
-                {% if bookings_week|length > 0 %}
-                    <li class="look-at-me">
-                        <a href="{% url 'view_bookings' %}?next_seven_days">
-                            Week - {{ bookings_week|length }}
-                        </a>
-                    </li>
-                {% else %}
-                    <li>
-                        <a href="{% url 'view_bookings' %}?next_seven_days">
-                            Week - {{ bookings_week|length }}
-                        </a>
-                    </li>
-                {% endif %}
-                {% if tmrw_bookings|length > 0 %}
-                    <li class="look-at-me">
-                        <a href="{% url 'view_bookings' %}?next_day">
-                            Tomorrow - {{ tmrw_bookings|length }}
-                        </a>
-                    </li>
-                {% else %}
-                    <li>
-                        <a href="{% url 'view_bookings' %}?next_day">
-                            Tomorrow - {{ tmrw_bookings|length }}
-                        </a>
-                    </li>
-                {% endif %}
-                {% if tday_bookings|length > 0 %}
-                    <li class="look-at-me">
-                        <a href="{% url 'view_bookings' %}?this_day">
-                            Today - {{ tday_bookings|length }}
-                        </a>
-                    </li>
-                {% else %}
-                    <li>
-                        <a href="{% url 'view_bookings' %}this_day">
-                            Today - {{ tday_bookings|length }}
-                        </a>
-                    </li>
-                {% endif %}
-            </ul>
-        </div>
-        <div>
-            <ul id="home-list" class="d-flex">
-                {% if request.user.is_authenticated %}
-                    <li>
-                        <a class="custom-button" href="#">To-Do List</a>
-                    </li>     
-                    <li>
-                        <a class="custom-button" href="{% url 'account_logout' %}">Logout</a>
-                    </li>     
-                    <li>
-                        <a class="custom-button" href="mailto:cleaners@cleaners.com">E-mail Cleaners</a>
-                    </li>                
-                {% else %}
-                    <li>
-                        <a class="custom-button" id="login-button" href="{% url 'account_login' %}">Login</a>
-                    </li>
-                {% endif %}
-            </ul>
+        <div class="row">
+            <div class="col-6">
+                <div class="text-center">
+                    <h3>Notes</h3>
+                    <ul id="notes-info">
+                        {% if urgent|length > 0 %}
+                            <li class="look-at-me">
+                                <a href="{% url 'notes' %}?urgent=true">
+                                    Urgent - {{ urgent|length }}
+                                </a>
+                            </li>
+                        {% else %}
+                            <li>
+                                Urgent - {{ urgent|length }}
+                            </li>
+                        {% endif %}
+                        <li>
+                            <a href="{% url 'notes' %}">
+                                Total Notes - {{ notes|length }}
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="text-center">
+                    <h3>Bookings</h3>
+                    <ul id="checkin-info">
+                        {% if tday_bookings|length > 0 %}
+                            <li class="look-at-me">
+                                <a href="{% url 'view_bookings' %}?this_day">
+                                    Today - {{ tday_bookings|length }}
+                                </a>
+                            </li>
+                        {% else %}
+                            <li>
+                                <a href="{% url 'view_bookings' %}this_day">
+                                    Today - {{ tday_bookings|length }}
+                                </a>
+                            </li>
+                        {% endif %}
+                        {% if tmrw_bookings|length > 0 %}
+                            <li class="look-at-me">
+                                <a href="{% url 'view_bookings' %}?next_day">
+                                    Tomorrow - {{ tmrw_bookings|length }}
+                                </a>
+                            </li>
+                        {% else %}
+                            <li>
+                                <a href="{% url 'view_bookings' %}?next_day">
+                                    Tomorrow - {{ tmrw_bookings|length }}
+                                </a>
+                          </li>
+                        {% endif %}
+                        {% if bookings_week|length > 0 %}
+                            <li class="look-at-me">
+                                <a href="{% url 'view_bookings' %}?next_seven_days">
+                                    This Week - {{ bookings_week|length }}
+                                </a>
+                            </li>
+                        {% else %}
+                            <li>
+                                <a href="{% url 'view_bookings' %}?next_seven_days">
+                                    This Week - {{ bookings_week|length }}
+                                </a>
+                            </li>
+                        {% endif %}
+                        {% if bookings_month|length > 0 %}
+                            <li class="look-at-me">
+                                <a href="{% url 'view_bookings' %}?next_month">
+                                    This Month - {{ bookings_month|length }}
+                                </a>
+                            </li>
+                        {% else %}
+                            <li>
+                                <a href="{% url 'view_bookings' %}?next_month">
+                                    This Month - {{ bookings_month|length }}
+                                </a>
+                            </li>
+                        {% endif %}
+                        <li class="grid">
+                            <a href="{% url 'view_bookings' %}">
+                                Total Bookings - {{ bookings|length }}
+                            </a>
+                            <small>
+                                (Past Bookings - {{ past_bookings|length }})
+                            </small>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="text-center">
+                    <h3>Actions</h3>
+                    <ul id="home-list">
+                        {% if request.user.is_authenticated %}
+                            <li class="home-list-item">
+                                <a class="custom-button" href="#">Bookings</a>
+                            </li>   
+                            <li class="home-list-item">
+                                <a class="custom-button" href="#">Housing</a>
+                            </li>   
+                            <li class="home-list-item">
+                                <a class="custom-button" href="#">To-Do List</a>
+                            </li>     
+                            <li class="home-list-item">
+                                <a class="custom-button" href="mailto:cleaners@cleaners.com">E-mail Cleaners</a>
+                            </li>                
+                            <li class="home-list-item">
+                                <a class="custom-button" href="{% url 'account_logout' %}">Logout</a>
+                            </li>     
+                        {% else %}
+                            <li id="login-button">
+                                <a class="custom-button" href="{% url 'account_login' %}">Login</a>
+                            </li>
+                            <p id="login-info" class="text-center">You will need to login to interact with this application.</p>
+                        {% endif %}
+                    </ul>
+                </div>
+            </div>
         </div>
     </div>
 {% endblock %}

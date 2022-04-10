@@ -22,6 +22,7 @@ def index(request):
     tmrw_bookings = bookings.filter(checkin_date=tmrw)
     bookings_month = bookings.filter(checkin_date__gte=tday, checkin_date__lte=next_month)
     bookings_week = bookings.filter(checkin_date__gte=tday, checkin_date__lte=next_seven_days)
+    past_bookings = bookings.filter(checkout_date__lte=tday)
 
     context = {
         'notes': notes,
@@ -33,6 +34,7 @@ def index(request):
         'next_month': next_month,
         'bookings_month': bookings_month,
         'bookings_week': bookings_week,
+        'past_bookings': past_bookings,
     }
 
     return render(request, 'home/index.html', context)
