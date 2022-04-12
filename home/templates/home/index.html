@@ -11,11 +11,9 @@
 
 {% block content %}
     <div id="home-container" class="container custom-container fade-in">
-        <a href="#">
-            <h1 id="date" class="text-center"></h1>
-        </a>
+        <h1 id="date" class="text-center"></h1>
         <div class="row">
-            <div class="col-6">
+            <div class="col-12 col-sm-6">
                 <div class="text-center">
                     <h3>Notes</h3>
                     <ul id="notes-info">
@@ -103,26 +101,46 @@
                     </ul>
                 </div>
             </div>
-            <div class="col-6">
+            <div class="col-12 col-sm-6">
                 <div class="text-center">
                     <h3>Actions</h3>
                     <ul id="home-list">
                         {% if request.user.is_authenticated %}
                             <li class="home-list-item">
-                                <a class="custom-button" href="#">Bookings</a>
+                                <a href="{% url 'housing_list' %}">
+                                    <button class="custom-button action-button">
+                                        Housing
+                                    </button>
+                                </a>
                             </li>   
                             <li class="home-list-item">
-                                <a class="custom-button" href="#">Housing</a>
+                                <a href="{% url 'view_bookings' %}">
+                                    <button class="custom-button action-button">
+                                        Bookings
+                                    </button>
+                                </a>
                             </li>   
                             <li class="home-list-item">
-                                <a class="custom-button" href="#">To-Do List</a>
+                                <a href="{% url 'to_do_lists' %}">
+                                    <button class="custom-button action-button">
+                                        To-Do List
+                                    </button>
+                                </a>
                             </li>     
                             <li class="home-list-item">
-                                <a class="custom-button" href="mailto:cleaners@cleaners.com">E-mail Cleaners</a>
-                            </li>                
+                                <a href="mailto:cleaners@cleaners.com">
+                                    <button class="custom-button action-button">
+                                        E-mail Cleaners
+                                    </button>
+                                </a>
+                            </li>      
                             <li class="home-list-item">
-                                <a class="custom-button" href="{% url 'account_logout' %}">Logout</a>
-                            </li>     
+                                <a href="{% url 'account_logout' %}">
+                                    <button class="custom-button action-button">
+                                        Logout
+                                    </button>
+                                </a>
+                            </li>
                         {% else %}
                             <li id="login-button">
                                 <a class="custom-button" href="{% url 'account_login' %}">Login</a>

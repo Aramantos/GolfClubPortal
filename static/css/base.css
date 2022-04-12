@@ -10,6 +10,14 @@
     font-family: cursive;
 }
 
+a {
+    color: unset;
+}
+
+a:hover {
+    color: unset;
+}
+
 body{
     background: url(/media/dunmore.jpeg) no-repeat center center fixed;
     background-size: cover;
@@ -33,23 +41,6 @@ body{
 
 .navbar-nav {
     margin-bottom: 8px;
-}
-
-.dropdown-menu {
-    background: var(--almond);
-    box-shadow: 5px 5px var(--gunmetal);
-}
-
-.dropdown-item {
-    color: var(--gunmetal);
-    text-shadow: 0px 0px 5px var(--almond);
-    font-size: 1.2rem;
-}
-
-.dropdown-item:hover {
-    color: var(--almond);
-    background: var(--gunmetal);
-    text-shadow: 0px 0px 5px var(--almond);
 }
 
 #logo-nav {
@@ -94,10 +85,6 @@ body{
     border: dotted 5px var(--gunmetal);
 }
 
-.custom-container a{
-    color: var(--gunmetal);
-}
-
 .custom-container div ul{
     font-size: 1.5rem;
     padding: 0;
@@ -106,18 +93,18 @@ body{
 }
 
 .custom-button{
-    color: var(--gunmetal)!important;
+    color: var(--gunmetal);
     border: solid var(--gunmetal) 3px;
     border-radius: 10px;
     background: aliceblue;
     font-size: 1.3rem;
-    padding: 15px;
+    padding: 14px;
     font-weight: 700;
     text-transform: capitalize;
 }
 
 .custom-button:hover{
-    color: aliceblue!important;
+    color: aliceblue;
     border: solid aliceblue 3px;
     border-radius: 10px;
     background: var(--gunmetal);
@@ -288,6 +275,34 @@ body{
 #verify-card {
     height: 20vh;
 }
+
+/*------------------Dropdown Menu*/
+
+#dropdownMenuButton {
+    margin-top: 10px;
+    font-size: 1.5rem;
+    background: #373c31;
+}
+
+.dropdown-menu {
+    background: var(--almond);
+    box-shadow: 5px 5px #746c61;
+    left: unset;
+    right: 0;
+}
+
+.dropdown-item {
+    color: var(--gunmetal);
+    text-shadow: 0px 0px 5px var(--almond);
+    font-size: 1.4rem;
+}
+
+.dropdown-item:hover {
+    color: var(--almond);
+    background: var(--gunmetal);
+    text-shadow: 0px 0px 5px var(--almond);
+}
+
 
 /*------------------Media Queries*/
 

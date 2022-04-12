@@ -69,6 +69,18 @@
               <li class="nav-item">
                 <a class="nav-link cursive" href="{% url 'notes' %}">Notes</a>
               </li>
+              <div class="dropdown">
+                <button class="btn btn-secondary dropdown-toggle cursive" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-expanded="false">
+                  Applications
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                  <a class="dropdown-item cursive" href="{% url 'home' %}">Home</a>
+                  <a class="dropdown-item cursive" href="{% url 'housing_list' %}">Housing</a>
+                  <a class="dropdown-item cursive" href="{% url 'view_bookings' %}">Bookings</a>
+                  <a class="dropdown-item cursive" href="{% url 'notes' %}">Notes</a>
+                  <a class="dropdown-item cursive" href="{% url 'to_do_lists' %}">To Do Lists</a>
+                </div>
+              </div>
               <li class="nav-item">
                   {% if request.user.is_authenticated %}
                     <a href="{% url 'account_logout' %}" class="nav-link cursive">Logout <i class="fas fa-user"></i> </a>

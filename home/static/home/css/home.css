@@ -7,12 +7,13 @@
 }
 
 #date{
+    color: var(--gunmetal);
     font-family: cursive;
     margin-bottom: 3vh;
 }
 
 #home-container {
-    height: 35pc;
+    height: auto;
     width: 75vw;
     margin-top: 10vh;
     opacity: 0;
@@ -32,23 +33,8 @@
 }
 
 .home-list-item{
-    margin: 2pc;
-    /* color: var(--gunmetal)!important;
-    border: 2px solid aliceblue;
-    border-radius: 10px;
-    background: aliceblue;
-    font-size: 1.3rem;
-    padding: 15px;
-    font-weight: 700;
-    text-transform: capitalize; */
+    margin: 0.4pc;
 }
-
-/* .home-list-item:hover{
-    color: aliceblue!important;
-    border: 2px solid var(--gunmetal);
-    background: var(--gunmetal);
-    text-decoration: none;
-} */
 
 .grid {
     display: grid;
@@ -66,4 +52,8 @@ small {
 #login-info {
     padding: 0 5vw;
     margin-top: 5%;
+}
+
+.action-button {
+    width: 100%;
 }
