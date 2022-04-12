@@ -83,6 +83,7 @@ def view_bookings(request):
     next_day = this_day + timedelta(days=1)
     seven_days = date.today() + timedelta(days=7)
     next_month = date.today() + timedelta(days=30)
+    last_month = date.today() + timedelta(days=-30)
     past_bookings = bookings.filter(checkout_date__lte=this_day)
 
     if request.GET:
@@ -101,9 +102,12 @@ def view_bookings(request):
             bookings = bookings.filter(checkin_date__gte=this_day, checkin_date__lte=next_month)
         if 'past_bookings' in request.GET:
             bookings = bookings.filter(checkout_date__lte=this_day)
+        if 'last_month' in request.GET:
+            bookings = bookings.filter(checkout_date__gte=last_month, checkout_date__lte=this_day)
 
     context = {
         'bookings': bookings,
+        'this_day': this_day,
     }
 
     return render(request, 'bookings/bookings.html', context)

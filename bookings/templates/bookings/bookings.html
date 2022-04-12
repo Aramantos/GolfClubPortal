@@ -13,7 +13,7 @@
         <div class="row">
             <div class="col-12">
                 <nav id="notes-navbar" class="navbar navbar-expand-lg navbar-light">
-                    <div class="col-5 text-center mt-3">
+                    <div class="col-4 text-center mt-3">
                         <h2><a id="notes-nav-title" class="cursive" href="{% url 'view_bookings' %}">All Bookings</a></h2>
                         <hr id="notes-nav-hr" class="w-50 mb-1">
                     </div>
@@ -22,6 +22,12 @@
                     </button>
                     <div class="collapse navbar-collapse menu-navbar-items" id="navbarNav">
                         <ul class="navbar-nav">
+                            <li class="nav-item">
+                                <a class="nav-link menu-nav-link cursive" href="{% url 'view_bookings' %}?last_month">Past</a>
+                            </li>
+                            <li class="nav-item">
+                                <p id="divider" class="nav-link menu-nav-link">-</p>
+                            </li>
                             <li class="nav-item">
                                 <a class="nav-link menu-nav-link cursive" href="{% url 'view_bookings' %}?this_day">Today</a>
                             </li>
