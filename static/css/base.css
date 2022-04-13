@@ -252,7 +252,7 @@ body{
 }
 
 #sign-out-card{
-    height: 18vh;
+    height: auto;
 }
 
 #sign-out-card p{
@@ -269,11 +269,29 @@ body{
 }
 
 #password-reset-card{
-    height: 40vh;
+    height: auto;
 }
 
 #verify-card {
-    height: 20vh;
+    height: auto;
+}
+
+#contact-us {
+    color: var(--gunmetal)!important;
+    border: 2px solid aliceblue;
+    padding: 3px 10px;
+    border-radius: 10px;
+    background: aliceblue;
+    font-size: 1.3rem;
+    font-weight: 700;contact
+    text-transform: capitalize;
+}
+
+#contact-us:hover {
+    color: aliceblue!important;
+    border: 2px solid var(--gunmetal);
+    background: var(--gunmetal);
+    text-decoration: none;
 }
 
 /*------------------Dropdown Menu*/
