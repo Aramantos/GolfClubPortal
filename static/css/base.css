@@ -37,6 +37,7 @@ body{
     background: var(--almond);
     border-bottom: 5px solid var(--queen-pink);
     box-shadow: 0 0 5px white;
+    z-index: 9;
 }
 
 .navbar-nav {
@@ -56,8 +57,10 @@ body{
 
 .nav-link{
     font-size: 1.5rem;
-    margin-top: 10px;
     color: var(--gunmetal);
+    border: 2px solid #82757a;
+    border-radius: 15%;
+    margin: 10px 2px;
 }
 
 .nav-link:hover {
@@ -109,6 +112,10 @@ body{
     border-radius: 10px;
     background: var(--gunmetal);
     text-decoration: none;
+}
+
+#app-dropdowns {
+    display: none;
 }
 
 /*------------------animations*/
@@ -283,7 +290,7 @@ body{
     border-radius: 10px;
     background: aliceblue;
     font-size: 1.3rem;
-    font-weight: 700;contact
+    font-weight: 700;
     text-transform: capitalize;
 }
 
@@ -324,6 +331,18 @@ body{
 
 /*------------------Media Queries*/
 
+@media (max-width: 1381px) {
+    #app-dropdowns {
+        display: block;
+    }
+    .base-nav-link {
+        display: none;
+    }
+    #logout-link {
+        display: block!important;
+    }
+}
+
 @media (max-width: 1234px) {
     #title {
         font-size: 2rem;
@@ -335,7 +354,7 @@ body{
         font-size: 1.7rem;
     }
     .nav-link {
-        font-size: 1.5rem;
+        font-size: 1.3rem;
     }
 }
 
@@ -343,17 +362,23 @@ body{
     #title {
         font-size: 1.5rem;
     }
-    .nav-link {
-        font-size: 1.3rem;
-    }
 }
 
 @media (max-width: 792px) {
     #title {
         font-size: 1.3rem;
     }
+}
+
+@media (max-width: 767px) {
+    .base-nav-link {
+        display: block;
+    }
     .nav-link {
-        font-size: 1.1rem;
+        border: none;
+    }
+    #app-dropdowns {
+        display: none;
     }
 }
 
