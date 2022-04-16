@@ -52,17 +52,39 @@
                     <table>
                         <tr>
                           <th>Housing</th>
-                          <th>Water</th>
-                          <th>Power</th>
-                          <th>Tidy</th>
+                          <th class="text-center">Water</th>
+                          <th class="text-center">Power</th>
+                          <th class="text-center">Tidy</th>
                         </tr>
                         {% for apartment in housing %}
                             {% if apartment.h_type.name == "apartments" %}
                                 <tr>
                                     <td>{{apartment.title}}</td>
-                                    <td>{{apartment.water}}</td>
-                                    <td>{{apartment.heat}}</td>
-                                    <td>{{apartment.tidy}}</td>
+                                    <td class="text-center">
+                                        {% if apartment.water %}
+                                            <a href="{% url 'water_check' apartment.id %}">
+                                                <i class="fa-solid fa-check"></i>
+                                            </a>
+                                        {% else %}
+                                            <a href="{% url 'water_check' apartment.id %}"> 
+                                                <i class="fa-solid fa-x"></i>
+                                            </a>
+                                        {% endif %}
+                                    </td>
+                                    <td class="text-center">
+                                        {% if apartment.heat %}
+                                            <i class="fa-solid fa-check"></i>
+                                        {% else %}
+                                            <i class="fa-solid fa-x"></i>
+                                        {% endif %}
+                                    </td>
+                                    <td class="text-center">
+                                        {% if apartment.tidy %}
+                                            <i class="fa-solid fa-check"></i>
+                                        {% else %}
+                                            <i class="fa-solid fa-x"></i>
+                                        {% endif %}
+                                    </td>
                                 </tr>
                             {% endif %}
                         {% endfor %}
@@ -84,17 +106,17 @@
                     <table>
                         <tr>
                           <th>Housing</th>
-                          <th>Water</th>
-                          <th>Power</th>
-                          <th>Tidy</th>
+                          <th class="text-center">Water</th>
+                          <th class="text-center">Power</th>
+                          <th class="text-center">Tidy</th>
                         </tr>
                         {% for cottage in housing %}
                             {% if cottage.h_type.name == "cottages" %}
                                 <tr>
                                     <td>{{cottage.title}}</td>
-                                    <td>{{cottage.water}}</td>
-                                    <td>{{cottage.heat}}</td>
-                                    <td>{{cottage.tidy}}</td>
+                                    <td class="text-center">{{cottage.water}}</td>
+                                    <td class="text-center">{{cottage.heat}}</td>
+                                    <td class="text-center">{{cottage.tidy}}</td>
                                 </tr>
                             {% endif %}
                         {% endfor %}
@@ -116,17 +138,17 @@
                     <table>
                         <tr>
                           <th>Housing</th>
-                          <th>Water</th>
-                          <th>Power</th>
-                          <th>Tidy</th>
+                          <th class="text-center">Water</th>
+                          <th class="text-center">Power</th>
+                          <th class="text-center">Tidy</th>
                         </tr>
                         {% for lodge in housing %}
                             {% if lodge.h_type.name == "lodges" %}
                                 <tr>
                                     <td>{{lodge.title}}</td>
-                                    <td>{{lodge.water}}</td>
-                                    <td>{{lodge.heat}}</td>
-                                    <td>{{lodge.tidy}}</td>
+                                    <td class="text-center">{{lodge.water}}</td>
+                                    <td class="text-center">{{lodge.heat}}</td>
+                                    <td class="text-center">{{lodge.tidy}}</td>
                                 </tr>
                             {% endif %}
                         {% endfor %}

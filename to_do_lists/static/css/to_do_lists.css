@@ -223,19 +223,3 @@ tr:nth-child(even) {
     font-size: 1.5rem;
     margin-top: 10px;
 }
-
-#add-item-list {
-    font-size: 1.5rem;
-}
-
-#div_id_done {
-    display: none;
-}
-
-#div_id_name .controls input {
-    width: 88%;
-}
-
-#div_id_created_by {
-    margin-bottom: 3pc;
-}

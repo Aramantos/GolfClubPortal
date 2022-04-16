@@ -1,0 +1,188 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'bookings/css/bookings.css' %}">
+<link rel="stylesheet" href="{% static 'to_do_lists/css/to_do_lists.css' %}">
+{% endblock %}
+
+{% block extra_js %}
+{% endblock %}
+
+{% block page_header %}
+    <!-- <div class="container header-container mt-5">
+        <div class="row">
+            <div class="col">
+                <nav id="notes-navbar" class="navbar navbar-expand-lg navbar-light">
+                    <div class="col text-center mt-3">
+                        <h2><a id="notes-nav-title" class="cursive" href="{% url 'notes' %}">All Notes</a></h2>
+                        <hr id="notes-nav-hr" class="w-50 mb-1">
+                    </div>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse menu-navbar-items" id="navbarNav">
+                        <ul class="navbar-nav">
+                            <li class="nav-item">
+                                <a class="nav-link menu-nav-link cursive look-at-me" href="{% url 'notes' %}?urgent=true">! Urgent !</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link menu-nav-link cursive" href="{% url 'notes' %}?category=arrivals">Arrivals</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link menu-nav-link cursive" href="{% url 'notes' %}?category=departures">Departures</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link menu-nav-link cursive" href="{% url 'notes' %}?category=handover">Handover</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link menu-nav-link cursive" href="{% url 'notes' %}?category=cleaning">Cleaning</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link menu-nav-link cursive" href="{% url 'notes' %}?category=golf_club">Golf Club</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link menu-nav-link cursive" href="{% url 'notes' %}?category=holiday_park">Holiday Park</a>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </div> -->
+{% endblock %}
+
+{% block content %}
+    <!-- <a id="add-note" href="{% url 'add_note' %}"><i class="fas fa-sticky-note"></i> <i class="far fa-plus-square"></i></a>
+    <div class="my-5"></div> -->
+    <div id="housing-header" class="container custom-container w-25">
+        <div class="row">
+            <div class="col-12 text-center">
+                <h2 class="cursive">To Do List</h2>
+            </div>
+        </div>
+    </div>
+    <!-- Button trigger modal -->
+    <a id="add-note" type="button" data-toggle="modal" data-target="#add-list-Modal">
+        <i class="fa-solid fa-list-check"></i> <i class="far fa-plus-square"></i>
+    </a>
+    <!-- Modal -->
+    <div class="modal fade" id="add-list-Modal" tabindex="-1" role="dialog" aria-labelledby="addModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="deleteModalLabel">Add a List</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body text-center">
+                    <form method="POST" action="{% url 'add_list' %}" class="form mb-2" enctype="multipart/form-data" autocomplete="off">
+                        {% csrf_token %}
+                        {% for field in formList %}
+                            {{ field | as_crispy_field }}
+                        {% endfor %}
+                        <div class="text-center">
+                            <a class="custom-button" href="{% url 'to_do_lists' %}">Cancel</a>
+                            <button id="add-note-submit" class="custom-button" type="submit">Add List</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="accordion">
+    {% for list in lists%}
+        <div class="card">
+            <div class="card-header text-center d-flex justify-content-around" id="heading{{ list }}">
+                <h5 class="mb-0">
+                    <button class="btn btn-link cursive" data-toggle="collapse" data-target="#collapse{{ list }}"
+                        aria-controls="collapse{{ list }}">
+                        <strong>{{ list }}</strong> - <small>{{ list.created}}</small> - By: {{ list.created_by }}
+                    </button>
+                </h5>
+                <a href="{% url 'delete_list' list.id %}" class="cursive list-delete">
+                    Delete List <i class="fa-solid fa-trash"></i>
+                </a>
+            </div>
+
+            <div id="collapse{{ list }}" class="collapse" aria-labelledby="heading{{ list }}" data-parent="#accordion">
+                <div class="card-body">
+                    <table>
+                        <tr>
+                            <th>List Item</th>
+                            <th>Created</th>
+                            <th>Created By</th>
+                            <th class="text-center">Status</th>
+                            <th class="text-center">Change</th>
+                        </tr>
+                        {% for list_item in list_items %}
+                        {% if list_item.list == list %}
+                        <tr>
+                            <td>{{list_item.item}}</td>
+                            <td>{{list_item.created}}</td>
+                            <td>{{list_item.created_by}}</td>
+                            <td class="text-center">
+                                {% if list_item.done %}
+                                <i class="fa-solid fa-check"></i>
+                                {% else %}
+                                <i class="fa-solid fa-x"></i>
+                                {% endif %}
+                            </td>
+                            <td class="text-center">
+                                {% if list_item.done %}
+                                <a href="{% url 'undone_list_item' list_item.id %}">
+                                    <i class="fa-solid fa-arrows-rotate"></i>
+                                </a>
+                                {% else %}
+                                <a href="{% url 'done_list_item' list_item.id %}">
+                                    <i class="fa-solid fa-arrows-rotate"></i>
+                                </a>
+                                {% endif %}
+                            </td>
+                        </tr>
+                        {% endif %}
+                        {% endfor %}
+                    </table>
+                    <!-- Button trigger modal -->
+                    <div id="add-item-list" class="text-center mt-4">
+                        <a id="" class="cursive" type="button" data-toggle="modal" data-target="#add-listitem-Modal">
+                            Add an item to the list <i class="fa-solid fa-list-check"></i>
+                        </a>
+                    </div>
+                    <!-- Modal -->
+                    <div class="modal fade" id="add-listitem-Modal" tabindex="-1" role="dialog" aria-labelledby="addModalLabel"
+                        aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="deleteModalLabel">Add a List Item to -> {{ list }} </h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body text-center">
+                                    <form method="POST" action="{% url 'to_do_lists' %}" class="form mb-2" enctype="multipart/form-data" autocomplete="off">
+                                        {% csrf_token %}
+                                        {% for field in formListItem %}
+                                            {{ field | as_crispy_field }}
+                                        {% endfor %}
+                                        <div class="text-center">
+                                            <a class="custom-button" href="{% url 'add_list_item' %}">Cancel</a>
+                                            <button id="add-note-submit" class="custom-button" type="submit">Add List Item</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+    </div>
+{% endblock %}
+
+{% block postloadjs %}
+{% endblock %}

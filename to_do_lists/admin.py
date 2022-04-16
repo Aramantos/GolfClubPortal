@@ -20,6 +20,7 @@ class ListItemAdmin(admin.ModelAdmin):
         'item',
         'created',
         'created_by',
+        'done',
     )
 
 

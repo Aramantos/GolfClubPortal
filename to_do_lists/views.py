@@ -15,72 +15,105 @@ def to_do_lists(request):
     """ A view to return the notes page """
 
     lists = List.objects.all()
-    # categories = None
-    # urgentcheck = None
+    list_items = ListItem.objects.all()
 
-    # if request.GET:
-    #     if 'category' in request.GET:
-    #         categories = request.GET['category'].split(',')
-    #         notes = notes.filter(category__name__in=categories)
-    #         categories = Category.objects.filter(name__in=categories)
+    formList = ListForm
+    formListItem = ListItemForm
 
-    #     if 'urgent' in request.GET:
-    #         urgentcheck = request.GET['urgent'].split(',')
-    #         notes = notes.filter(urgent = True)
-    #         urgentcheck = Note.objects.filter(urgent = True)
+    # if request.method == 'POST':
+    #     if request.POST.get("form_type") == 'formOne':
+    #         form = formList(request.POST)
+    #         if form.is_valid():
+    #             form.save()
+    #             return redirect(reverse('to_do_lists'))
+    #     elif request.POST.get("form_type") == 'formTwo':
+    #         form = formListItem(request.POST)
+    #         if form.is_valid():
+    #             form.save()
+    #             return redirect(reverse('to_do_lists'))
 
     context = {
         'lists': lists,
+        'list_items': list_items,
+        'formList': formList,
+        'formListItem': formListItem,
     }
 
-    return render(request, 'notes/notes.html', context)
+    return render(request, 'to_do_lists/to_do_lists.html', context)
 
 
 @login_required
 def add_list(request):
-    """ Add an note to the notes page """
-
-    user = request.user.username
-    print(user)
+    """ Add a list to the to do lists page """
 
     if request.method == 'POST':
         form = ListForm(request.POST)
-        ListForm(initial={'created_by': user})
         if form.is_valid():
             form.save()
-            print("success")
-            # messages.success(request, 'Successfully added your image')
+            # messages.success(request, 'Successfully added your booking')
             return redirect(reverse('to_do_lists'))
         else:
             print("error")
-            # messages.error(request, 'Failed to add your image. Please ensure the form is valid.')
+            # messages.error(request, 'Failed to add your booking. Please ensure the form is valid.')
     else:
         form = ListForm()
 
-    template = 'to_do_lists/add_list.html'
     context = {
         'form': form,
-        'user': user,
     }
 
-    return render(request, template, context)
+    return render(request, context)
 
 
-# @login_required
-# def edit_list(request, note_id):
-#     """ Edit an note on the notes page """
+@login_required
+def delete_list(request, list_id):
+    """ Delete a list from the lists page """
 
-#     note = get_object_or_404(List, pk=list_id)
-#     note.urgent = False
-#     note.save()
-
-#     return redirect(reverse('notes'))
+    list = get_object_or_404(List, pk=list_id)
+    list.delete()
+    return redirect(reverse('to_do_lists'))
 
 
-# @login_required
-# def delete_note(request, note_id):
-#     """ Delete a note from the notes page """
+@login_required
+def add_list_item(request):
+    """ Add a list item to a list on the to do lists page """
 
-#     note = get_object_or_404(List, pk=note_id)
-#     note.delete()
-#     return redirect(reverse('notes'))
+    if request.method == 'POST':
+        form = ListItemForm(request.POST)
+        if form.is_valid():
+            form.save()
+            # messages.success(request, 'Successfully added your booking')
+            return redirect(reverse('view_bookings'))
+        else:
+            print("error")
+            # messages.error(request, 'Failed to add your booking. Please ensure the form is valid.')
+    else:
+        form = ListItemForm()
+
+    context = {
+        'form': form,
+    }
+
+    return render(request, context)
+
+
+@login_required
+def done_list_item(request, list_item_id):
+    """ Set a list item to done the list_items page """
+
+    list_item = get_object_or_404(ListItem, pk=list_item_id)
+    list_item.done = False
+    list_item.save()
+
+    return redirect(reverse('to_do_lists'))
+
+
+@login_required
+def undone_list_item(request, list_item_id):
+    """ Set a list item to undone on the list_items page """
+
+    list_item = get_object_or_404(ListItem, pk=list_item_id)
+    list_item.done = True
+    list_item.save()
+
+    return redirect(reverse('to_do_lists'))

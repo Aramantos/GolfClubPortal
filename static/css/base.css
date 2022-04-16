@@ -37,7 +37,7 @@ body{
     background: var(--almond);
     border-bottom: 5px solid var(--queen-pink);
     box-shadow: 0 0 5px white;
-    z-index: 9;
+    position: unset;
 }
 
 .navbar-nav {
@@ -58,7 +58,6 @@ body{
 .nav-link{
     font-size: 1.5rem;
     color: var(--gunmetal);
-    border: 2px solid #82757a;
     border-radius: 15%;
     margin: 10px 2px;
 }
@@ -116,6 +115,10 @@ body{
 
 #app-dropdowns {
     display: none;
+}
+
+.base-nav-link {
+    border: 2px solid #82757a;
 }
 
 /*------------------animations*/
@@ -341,6 +344,9 @@ body{
     #logout-link {
         display: block!important;
     }
+    .nav-link {
+        font-size: 1.3rem;
+    }
 }
 
 @media (max-width: 1234px) {
@@ -352,9 +358,6 @@ body{
 @media (max-width: 1100px) {
     #title {
         font-size: 1.7rem;
-    }
-    .nav-link {
-        font-size: 1.3rem;
     }
 }
 
